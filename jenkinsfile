@@ -1,7 +1,6 @@
 @Library('threepoints-sharedlib') _
 pipeline {
     agent any
-   
     
     environment {
         SONARQUBE_ENV = 'Sonar Local'
@@ -11,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Descargando el código desde GitHub...'
-                git branch: 'main', url: 'https://github.com/ivanloav/threepoints_devops_webserver_practica02.git'
+                git branch: 'main', url: 'https://github.com/ivanloav/threepoints_devops_webserver.git'
             }
         }
 
@@ -19,6 +18,7 @@ pipeline {
             parallel {
                 stage('Pruebas de SAST') {
                     steps {
+                        // Usamos la librería para ejecutar el análisis de Sonar
                         sonarAnalysis(abortPipeline: true, qualityGateCheck: true)
                     }
                 }
