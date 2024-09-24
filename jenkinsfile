@@ -27,6 +27,7 @@ pipeline {
                     steps {
                         echo "El workspace es: ${env.WORKSPACE}"
                     }
+                    
                 }
             }
         }
