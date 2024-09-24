@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Descargando el código desde GitHub...'
-                git branch: 'master', url: 'https://github.com/ivanloav/threepoints_devops_webserver_practica02.git'
+                git branch: 'main', url: 'https://github.com/ivanloav/threepoints_devops_webserver_practica02.git'
             }
         }
 
