@@ -1,6 +1,7 @@
 @Library('threepoints-sharedlib') _
 pipeline {
     agent any
+   
     
     environment {
         SONARQUBE_ENV = 'Sonar Local'
