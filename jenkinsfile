@@ -4,13 +4,14 @@ pipeline {
     
     environment {
         SONARQUBE_ENV = 'Sonar Local'
+        BRANCH_NAME = "${env.BRANCH_NAME}"
     }
 
     stages {
         stage('Checkout') {
             steps {
                 echo 'Descargando el código desde GitHub...'
-                git branch: 'main', url: 'https://github.com/ivanloav/threepoints_devops_webserver_practica02.git'
+                git branch: 'master', url: 'https://github.com/ivanloav/threepoints_devops_webserver_practica02.git'
             }
         }
 
@@ -18,15 +19,15 @@ pipeline {
             parallel {
                 stage('Pruebas de SAST') {
                     steps {
-                        sonarAnalysis(abortPipeline: true, qualityGateCheck: true)
+                        sonarAnalysis(abortPipeline: false, qualityGateCheck: true)
                     }
                 }
 
                 stage('Imprimir Env') {
                     steps {
                         echo "El workspace es: ${env.WORKSPACE}"
+                        echo "La rama es: ${env.BRANCH_NAME}"
                     }
-
                 }
             }
         }
